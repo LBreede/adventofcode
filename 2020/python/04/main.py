@@ -24,23 +24,18 @@ def createPassportDictList(pStringList):
 	return pDictList
 
 def removeInvalidPassportsFromList(pDictList):
-	for p in pDictList:
-		if len(p) < 7:
-			pDictList.remove(p)
-	return pDictList
-
-def cidCheck(pDictList):
-	postCheck = []
+	newList = []
 	for p in pDictList:
 		if len(p) == 7 and "cid" not in p:
-			postCheck.append(p)
-		elif len(p) == 8:
-			postCheck.append(p)
-	return postCheck
+			newList.append(p)
+		if len(p) == 8:
+			newList.append(p)
+	return newList
 
 def passportMasterCheck(pDictList):
 	validPassports = []
 	for p in pDictList:
+		
 		check = 0
 
 		# BIRTH YEAR
@@ -110,9 +105,12 @@ def countValidPassports(pDictList):
 
 raw_list = createPassportStringList("input.txt")
 passports = createPassportDictList(raw_list)
-removeInvalidPassportsFromList(passports)
-aaa = cidCheck(passports)
-valid_passports = passportMasterCheck(aaa)
-num_valid = countValidPassports(valid_passports)
-# print("The answer for part one is: " + str(num_valid) + " valid passports.") # 264
-print("The answer for part two is: " + str(num_valid) + " valid passports.")
+initCleanupList = removeInvalidPassportsFromList(passports)
+num_valid_pt1 = countValidPassports(initCleanupList)
+
+print("The answer for part one is: " + str(num_valid_pt1) + " valid passports.") # 264
+
+valid_passports = passportMasterCheck(initCleanupList)
+num_valid_pt2 = countValidPassports(valid_passports)
+
+print("The answer for part two is: " + str(num_valid_pt2) + " valid passports.")
