@@ -24,16 +24,13 @@ def createSortedCellList(cell_list):
 def calcChecksum(sorted_cell_list):
 	differences = []
 	for cell in sorted_cell_list:
-		if len(cell) > 0:
-			largest = cell[-1]
-			smallest = cell[0]
-			differences.append(largest - smallest)
+		differences.append(cell[-1] - cell[0])
 	return sum(differences)
 
 cell_list = createCellList("input.txt")
 
-# cell_list = ["5195", "753", "2468"]
+cell_list = ["666"]
 
 sorted_list = createSortedCellList(cell_list)
 checksum = calcChecksum(sorted_list)
-print checksum
+print(checksum)
