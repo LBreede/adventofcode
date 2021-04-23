@@ -1,9 +1,11 @@
-def slopeCheck(input, hori, vert):
-	lineList = [line.rstrip("\n") for line in open(input)]
+# --- Day 3: Toboggan Trajectory ---
+
+def slopecheck(hori, vert):
+	line_list = [line.rstrip("\n") for line in open("input.txt")]
 	pos = 0
 	found = 0
 	i = 0
-	for line in lineList:
+	for line in line_list:
 		if i % vert == 0:
 			if line[pos % len(line)] == "#":
 				found += 1
@@ -11,11 +13,11 @@ def slopeCheck(input, hori, vert):
 		i += 1
 	return found
 
-a = slopeCheck("input.txt", 1, 1)
-b = slopeCheck("input.txt", 3, 1)
-c = slopeCheck("input.txt", 5, 1)
-d = slopeCheck("input.txt", 7, 1)
-e = slopeCheck("input.txt", 1, 2)
+a = slopecheck(1, 1)
+b = slopecheck(3, 1)
+c = slopecheck(5, 1)
+d = slopecheck(7, 1)
+e = slopecheck(1, 2)
 
 print(a)
 print(b)
