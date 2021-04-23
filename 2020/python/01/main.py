@@ -31,7 +31,6 @@ def findTriple(expense_report):
 	
 	return a * b * c
 
-
 if __name__ == "__main__":
 	expense_report = createExpenseReport("input.txt")
 	print(findPair(expense_report))

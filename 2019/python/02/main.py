@@ -6,11 +6,12 @@ def createIntcodeList(puzzle_input):
 	return intcode_list
 
 def modifyIncodeList(intcode_list):
-	intcode_list[1] = 12
-	intcode_list[2] = 2
-	return intcode_list
+	_intcode_list = intcode_list.copy()
+	_intcode_list[1] = 12
+	_intcode_list[2] = 2
+	return _intcode_list
 
-def intcodeProgram(intcode_list):
+def intcodeProgramOne(intcode_list):
 	idx = 0
 	while True:
 		operator = intcode_list[idx]
@@ -36,11 +37,14 @@ def intcodeProgram(intcode_list):
 			break
 	return intcode_list
 
-
-
 if __name__ == "__main__":
 	intcode_list = createIntcodeList("input.txt")
-	intcode_list = modifyIncodeList(intcode_list)
+	mod_intcode_list = modifyIncodeList(intcode_list)
 	# intcode_list = [1,1,1,4,99,5,6,0,99]
-	intcode_list = intcodeProgram(intcode_list)
-	print(intcode_list[0])
+	post_intcode_list_one = intcodeProgramOne(mod_intcode_list)
+	result_one = post_intcode_list_one[0]
+	print(result_one)
+	print("-------")
+	instruction_list = makeInstructionList(intcode_list)
+	result_two = intcodeProgramTwo(instruction_list)
+	print(result_two)
