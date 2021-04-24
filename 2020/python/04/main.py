@@ -1,116 +1,58 @@
-def createPassportStringList(input):
-	lineList = [line.rstrip("\n") for line in open(input)]
-	oneLine = ""
-	for L in lineList:
-		
-		if L != "":
-			oneLine += L + " "
-		else:
-			oneLine += "-"
+# --- Day 4: Passport Processing ---
 
-	passportList = oneLine.split("-")
-	return passportList
+import re
 
-def createPassportDictList(pStringList):
-	pDictList = []
-	for p in pStringList:
-		elem = p.split(" ")
-		elem.pop()
-		pDict = {}
-		for e in elem:
-			ee = e.split(":")
-			pDict[ee[0]] = ee[1]
-		pDictList.append(pDict)
-	return pDictList
+with open("input.txt", "r") as f:
+	line_list = [line.replace("\n", " ") for line in f.read().split("\n\n")]
 
-def removeInvalidPassportsFromList(pDictList):
-	newList = []
-	for p in pDictList:
-		if len(p) == 7 and "cid" not in p:
-			newList.append(p)
-		if len(p) == 8:
-			newList.append(p)
-	return newList
+passport_list = []
+for line in line_list:
+	fields = line.split(" ")
+	passport = {}
+	for f in fields:
+		k, v = f.split(":")
+		passport[k] = v
+	passport_list.append(passport)
 
-def passportMasterCheck(pDictList):
-	validPassports = []
-	for p in pDictList:
-		
-		check = 0
+valid_passport_list_one = []
+for p in passport_list:
+	if len(p) == 8 or len(p) == 7 and "cid" not in p:
+		valid_passport_list_one.append(p)
 
-		# BIRTH YEAR
-		if "byr" in p:
-			byr = int(p["byr"])
-			if byr >= 1920 and byr <= 2002:
-				check += 1
+print("Part one has {} valid passports.".format(len(valid_passport_list_one)))
 
-		# ISSUE YEAR
-		if "iyr" in p:
-			iyr = int(p["iyr"])
-			if iyr >= 2010 and iyr <= 2020:
-				check += 1 
+valid_passport_list_two = []
+for p in valid_passport_list_one:
+	rules = 0
+	for k, v in p.items():
+		if k == "byr":
+			if int(v) >= 1920 and int(v) <= 2002:
+				rules += 1
+		elif k == "iyr":
+			if int(v) >= 2010 and int(v) <= 2020:
+				rules += 1
+		elif k == "eyr":
+			if int(v) >= 2020 and int(v) <= 2030:
+				rules += 1
+		elif k == "hgt":
+			if v[-2:] == "cm":
+				if int(v[:-2]) >= 150 and int(v[:-2]) <= 193:
+					rules += 1
+			elif v[-2:] == "in":
+				if int(v[:-2]) >= 59 and int(v[:-2]) <= 76:
+					rules += 1
+		elif k == "hcl":
+			if v[0] == "#":
+				if len(re.findall("[a-z0-9]", v[1:])) == 6:
+					rules += 1
+		elif k == "ecl":
+			colors = {"amb", "blu", "brn", "gry", "grn", "hzl", "oth"}
+			if v in colors:
+				rules += 1
+		elif k == "pid":
+			if len(re.findall("[0-9]", v)) == 9:
+				rules += 1
+	if rules == 7:
+		valid_passport_list_two.append(p)
 
-		# EXPIRATION YEAR
-		if "eyr" in p:
-			eyr = int(p["eyr"])
-			if eyr >= 2020 and eyr <= 2030:
-				check += 1
-
-		# HEIGHT
-		if "hgt" in p:
-			hgt = p["hgt"]
-			sys = hgt[-2:]
-			amt = hgt[:-2]
-			if sys == "cm":
-				amt = int(amt)
-				if amt >= 150 and amt <= 193:
-					check += 1
-			elif sys == "in":
-				amt = int(amt)
-				if amt >= 59 and amt <= 76:
-					check += 1
-
-		# HAIR COLOR
-		if "hcl" in p:
-			hcl = p["hcl"]
-			first = hcl[0]
-			if first == "#":
-				rest = hcl[1:]
-				if len(rest) == 6:
-					# check += 1
-					chars = set("ghijklmnopqrstuvwxyz")
-					if not any((c in chars) for c in rest):
-						check += 1
-
-		# EYE COLOR
-		if "ecl" in p:
-			ecl = p["ecl"]
-			colors = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
-			if ecl in colors:
-				check += 1
-
-		# PASSPORT ID
-		if "pid" in p:
-			pid = p["pid"]
-			if pid[0] == "0" and len(pid) == 9:
-				check += 1
-
-		if check == 7:
-			validPassports.append(p)
-
-	return validPassports
-
-def countValidPassports(pDictList):
-	return len(pDictList)
-
-raw_list = createPassportStringList("input.txt")
-passports = createPassportDictList(raw_list)
-initCleanupList = removeInvalidPassportsFromList(passports)
-num_valid_pt1 = countValidPassports(initCleanupList)
-
-print("The answer for part one is: " + str(num_valid_pt1) + " valid passports.") # 264
-
-valid_passports = passportMasterCheck(initCleanupList)
-num_valid_pt2 = countValidPassports(valid_passports)
-
-print("The answer for part two is: " + str(num_valid_pt2) + " valid passports.")
+print("Part two has {} valid passports.".format(len(valid_passport_list_two)))
