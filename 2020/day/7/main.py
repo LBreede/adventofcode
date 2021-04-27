@@ -24,11 +24,11 @@ for b in bags:
 
 count = 0
 for k, v in all_bags.items():
-	queue = v
-	
+	queue = v.copy()
+
 	temp_count = 0
 	for bag in queue:
-		if len(bag) > 0:			
+		if len(bag) > 0:
 			if bag[1] == "shiny gold":
 				count += 1
 				break
