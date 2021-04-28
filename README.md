@@ -8,8 +8,10 @@ From here, you can access all of the events (and the corresponding puzzles, lead
 
 [[2018]](https://adventofcode.com/2018) 6*
 
-[[2017]](https://adventofcode.com/2017) 2*
+[[2017]](https://adventofcode.com/2017) 5*
 
-[[2016]](https://adventofcode.com/2016) 5*
+[[2016]](https://adventofcode.com/2016) 6*
 
 [[2015]](https://adventofcode.com/2015) 10*
+
+Total stars: 43*
