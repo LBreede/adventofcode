@@ -1,8 +1,11 @@
 # Advent of Code :christmas_tree:
 
-From here, you can access all of the events (and the corresponding puzzles, leaderboards, stats, etc) ever run on Advent of Code:
+![](https://img.shields.io/badge/day%20📅-1-blue)
 
-[[2021]](https://adventofcode.com/2021) ![](https://img.shields.io/badge/stars%20⭐-2-yellow)
+## 2021
+
+![](https://img.shields.io/badge/days%20completed-1-red)
+![](https://img.shields.io/badge/stars%20⭐-2-yellow)
 
 [[2020]](https://adventofcode.com/2020) ![](https://img.shields.io/badge/stars%20⭐-13-yellow)
 
