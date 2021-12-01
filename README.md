@@ -4,17 +4,17 @@ From here, you can access all of the events (and the corresponding puzzles, lead
 
 [[2021]](https://adventofcode.com/2021) ![](https://img.shields.io/badge/stars%20⭐-2-yellow)
 
-[[2020]](https://adventofcode.com/2020) 13*
+[[2020]](https://adventofcode.com/2020) ![](https://img.shields.io/badge/stars%20⭐-13-yellow)
 
-[[2019]](https://adventofcode.com/2019) 3*
+[[2019]](https://adventofcode.com/2019) ![](https://img.shields.io/badge/stars%20⭐-3-yellow)
 
-[[2018]](https://adventofcode.com/2018) 6*
+[[2018]](https://adventofcode.com/2018) ![](https://img.shields.io/badge/stars%20⭐-6-yellow)
 
-[[2017]](https://adventofcode.com/2017) 5*
+[[2017]](https://adventofcode.com/2017) ![](https://img.shields.io/badge/stars%20⭐-5-yellow)
 
-[[2016]](https://adventofcode.com/2016) 6*
+[[2016]](https://adventofcode.com/2016) ![](https://img.shields.io/badge/stars%20⭐-6-yellow)
 
-[[2015]](https://adventofcode.com/2015) 10*
+[[2015]](https://adventofcode.com/2015) ![](https://img.shields.io/badge/stars%20⭐-10-yellow)
 
 
 
