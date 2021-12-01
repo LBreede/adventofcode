@@ -18,4 +18,4 @@ From here, you can access all of the events (and the corresponding puzzles, lead
 
 
 
-Total stars: 45*
+Total: ![](https://img.shields.io/badge/stars%20⭐-45-yellow)
