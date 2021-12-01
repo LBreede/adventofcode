@@ -17,4 +17,5 @@ From here, you can access all of the events (and the corresponding puzzles, lead
 [[2015]](https://adventofcode.com/2015) 10*
 
 Total stars: 45*
+
 <span style="color:blue">some *blue* text</span>.
