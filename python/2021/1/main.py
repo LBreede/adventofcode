@@ -1,5 +1,5 @@
 def list_from_file(filename):
-	with open (filename) as fp:
+	with open (filename, "r") as fp:
 		return [int(x) for x in fp.read().split("\n")]
 
 def count_increased(lst):
