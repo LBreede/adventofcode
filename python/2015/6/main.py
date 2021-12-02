@@ -1,8 +1,5 @@
 # --- Day 6: Probably a Fire Hazard ---
 
-with open("input.txt", "r") as fp:
-	instruction_list = fp.read().split("\n")
-
 def process_list(lst):
 	new_list = []
 	for i in lst:
@@ -20,31 +17,74 @@ def process_list(lst):
 		new_list.append([op, s, e])
 	return new_list
 
-instruction_list = ["turn on 0,0 through 999,999"]
+def init_grid(x, y):
+	grid = []
+	for i in range(y):
+		row = []
+		for j in range(x):
+			row.append(0)
+		grid.append(row)
 
-l = process_list(instruction_list)
+	return grid
 
+def switch_lights(grid, lst, part):
 
-grid = []
+	for instruction in lst:
 
-for i in range(10):
-	row = []
-	for j in range(10):
-		row.append(0)
-	grid.append(row)
+		startx = min(instruction[1][0], instruction[2][0])
+		starty = max(instruction[1][0], instruction[2][0])
 
+		endx = min(instruction[1][1], instruction[2][1])
+		endy = max(instruction[1][1], instruction[2][1])
 
-# toggle
-for i in range(4,5+1):
-	for j in range(4,5+1):
-		grid[i][j] = 1 - grid[i][j]
+		for i in range(startx, starty+1):
+			for j in range(endx, endy+1):
+				if instruction[0] == "turn on":
+					if part == 1:
+						grid[i][j] = 1
+					elif part == 2:
+						grid[i][j] += 1
+				elif instruction[0] == "turn off":
+					if part == 1:
+						grid[i][j] = 0
+					elif part == 2:
+						grid[i][j] = max(grid[i][j] - 1, 0)
+				elif instruction[0] == "toggle":
+					if part == 1: 
+						grid[i][j] = 1 - grid[i][j]
+					elif part == 2:
+						grid[i][j] += 2
+				else:
+					raise ValueError(f"Bad opcode in instruction: {i}")
 
+	return grid
 
-for i in range(3,4+1):
-	for j in range(2,4+1):
-		grid[i][j] = 1 - grid[i][j]
+with open("input.txt", "r") as fp:
+	instruction_list = fp.read().split("\n")
 
-for row in grid:
-	print(row)
+xsize = 1000
+ysize = 1000
+
+# instruction_list = ["toggle 0,0 through 999,999"]
+
+lst = process_list(instruction_list)
+
+grid = init_grid(xsize, ysize)
+grid1 = switch_lights(grid, lst, 1)
+
+lights_on = 0
+for row in grid1:
+	lights_on += row.count(1)
+
+print(f"Part 1: {lights_on}")
+
+grid = init_grid(xsize, ysize)
+grid2 = switch_lights(grid, lst, 2)
+
+total_intensity = 0
+for row in grid2:
+	total_intensity += sum(row)
+
+print(f"Part 2: {total_intensity}")
 
 
