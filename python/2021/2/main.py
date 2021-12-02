@@ -1,13 +1,13 @@
 # --- Day 2: Dive! ---
 
 with open("input.txt", "r") as fp:
-	linelist = fp.read().split("\n")
+	raw_cmd_list = fp.read().split("\n")
 
-better_linelist = []
-for L in linelist:
+cmd_list = []
+for L in raw_cmd_list:
 	direction, amount = L.split(" ")
 	amount = int(amount)
-	better_linelist.append([direction, amount])
+	cmd_list.append([direction, amount])
 
 
 def drive(lst, use_aim=0):
@@ -16,7 +16,7 @@ def drive(lst, use_aim=0):
 	depth = 0
 	aim = 0
 
-	for L in better_linelist:
+	for L in lst:
 		d, x = L
 
 		if d == "forward":
@@ -37,8 +37,8 @@ def drive(lst, use_aim=0):
 
 	return horizontal * depth
 
-part1 = drive(better_linelist)
-part2 = drive(better_linelist, 1)
+part1 = drive(cmd_list)
+part2 = drive(cmd_list, 1)
 
 print(f"Part 1: {part1}")
 print(f"Part 2: {part2}")
