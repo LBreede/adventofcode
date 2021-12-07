@@ -1,8 +1,10 @@
 # --- Day 5: Hydrothermal Venture ---
 
+import aoc_helper
+
 def process_data(data):
 	better_data = []
-	for line in data.split("\n"):
+	for line in data:
 		start, ignore, end = line.split()
 		pt1 = [int(val) for val in start.split(",")]
 		pt2 = [int(val) for val in end.split(",")]
@@ -98,10 +100,8 @@ def print_grid(grid):
 
 def main():
 
-	with open("input.txt", "r") as f:
-		raw_data = f.read()
-	
-	data = process_data(raw_data)
+	data = aoc_helper.load_input("day05_input.txt")
+	data = process_data(data)
 	
 	grid1 = draw_grid(data)
 	grid1 = draw_lines(grid1, data)
@@ -115,3 +115,7 @@ def main():
 
 if __name__ == '__main__':
 	main()
+
+# Part 1: 5442
+# Part 2: 19571
+# [Finished in 383ms]

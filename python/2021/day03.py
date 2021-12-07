@@ -1,5 +1,6 @@
 # --- Day 3: Binary Diagnostic ---
 
+import aoc_helper
 from collections import Counter
 
 def most_common_v1(lst):
@@ -68,8 +69,7 @@ def calc_rating(lst, typ):
 
 	return tmp_lst[0]
 
-with open("input.txt", "r") as fp:
-	linelist = fp.read().split("\n")
+linelist = aoc_helper.load_input("day03_input.txt")
 
 gamma = calc_gamma(linelist, True, True)
 epsilon = bitwise_complement(gamma)

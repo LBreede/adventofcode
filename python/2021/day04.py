@@ -1,5 +1,7 @@
 # --- Day 4: Giant Squid ---
 
+import aoc_helper
+
 def get_numbers(lst):
 	return lst[0].split(",")
 
@@ -53,17 +55,17 @@ def win_bingo(numbers, b):
 	return accum_unmarked * int(num)
 
 def main():
-	with open("example.txt", "r") as f:
-		linelist = f.read().split("\n\n")
+	
+	linelist = aoc_helper.load_input("day04_input.txt", separator="\n\n")
 
 	numbers = get_numbers(linelist)
 	boards = get_boards(linelist)
 
 	result_1 = win_bingo(numbers, boards)
-	result_2 = lose_bingo(numbers, boards)
+	# result_2 = lose_bingo(numbers, boards)
 
 	print(f"Part 1: {result_1}")
-	print(f"Part 2: {result_2}")
+	# print(f"Part 2: {result_2}")
 
 
 if __name__ == "__main__":

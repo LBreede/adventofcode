@@ -1,7 +1,6 @@
 # --- Day 7: The Treachery of Whales ---
 
-with open("input.txt", "r") as f:
-	data = [int(x) for x in f.read().split(",")]
+import aoc_helper
 
 def align_submarines(data, constant_fuel=True):
 
@@ -26,6 +25,9 @@ def align_submarines(data, constant_fuel=True):
 			minfuel = fuel
 
 	return minfuel
+
+data = aoc_helper.load_input("day07_input.txt", separator=",")
+data = [int(x) for x in data]
 
 result1 = align_submarines(data)
 result2 = align_submarines(data, constant_fuel=False)

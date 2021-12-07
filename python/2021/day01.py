@@ -1,8 +1,6 @@
 # --- Day 1: Sonar Sweep ---
 
-def list_from_file(filename):
-	with open (filename, "r") as fp:
-		return [int(x) for x in fp.read().split("\n")]
+import aoc_helper
 
 def count_increased(lst):
 	increased = 0
@@ -22,8 +20,10 @@ def combine_data(lst, window):
 	return new_lst
 
 def main():
-	depthlist = list_from_file("input.txt")
+	depthlist = aoc_helper.load_input("day01_input.txt")
+	depthlist = [int(x) for x in depthlist]	
 	print("Part 1: {}".format(count_increased(depthlist)))
+	
 	new_depthlist = combine_data(depthlist, 3)
 	print("Part 2: {}".format(count_increased(new_depthlist)))
 

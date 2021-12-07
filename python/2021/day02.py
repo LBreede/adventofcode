@@ -1,14 +1,6 @@
 # --- Day 2: Dive! ---
 
-with open("input.txt", "r") as fp:
-	raw_cmd_list = fp.read().split("\n")
-
-cmd_list = []
-for L in raw_cmd_list:
-	direction, amount = L.split(" ")
-	amount = int(amount)
-	cmd_list.append([direction, amount])
-
+import aoc_helper
 
 def drive(lst, use_aim=0):
 
@@ -36,6 +28,14 @@ def drive(lst, use_aim=0):
 				aim += x
 
 	return horizontal * depth
+
+raw_cmd_list = aoc_helper.load_input("day02_input.txt")
+
+cmd_list = []
+for L in raw_cmd_list:
+	direction, amount = L.split(" ")
+	amount = int(amount)
+	cmd_list.append([direction, amount])
 
 part1 = drive(cmd_list)
 part2 = drive(cmd_list, 1)

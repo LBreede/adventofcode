@@ -1,5 +1,7 @@
 # --- Day 6: Lanternfish ---
 
+import aoc_helper
+
 def lanternfish(ages, days):
 	for i in range(days):
 		for j in range(len(ages)):
@@ -21,18 +23,18 @@ def splitup_days(days):
 
 	return day_list
 
-DAYS = 256
+DAYS = 80
 FILENAME = "example"
 EXT = ".txt"
 
 day_list = splitup_days(DAYS)
 # day_list = [40]
-read_file = FILENAME + EXT
+read_file = "day06_" + FILENAME + EXT
 
 for i, day in enumerate(day_list):
 
-	with open(read_file, "r") as f:
-		ages = [int(x) for x in f.read().split(",")]
+	ages = aoc_helper.load_input(read_file, separator=",")
+	ages = [int(x) for x in ages]
 
 	text = ",".join( [str(x) for x in lanternfish(ages, day)] )
 	
