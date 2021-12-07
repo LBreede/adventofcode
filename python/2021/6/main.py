@@ -1,7 +1,5 @@
 # --- Day 6: Lanternfish ---
 
-import json
-
 def lanternfish(ages, days):
 	for i in range(days):
 		for j in range(len(ages)):
@@ -9,21 +7,42 @@ def lanternfish(ages, days):
 				ages[j] = 7
 				ages.append(8)
 			ages[j] -= 1
-		print(f"At day {i+1}, there were {len(ages)} fish...")
 	return ages
 
-with open("example.txt", "r") as f:
-	ages = [int(x) for x in f.read().split(",")]
+def splitup_days(days):	
+	day_list = []
+	d = days
+	while d > 1:
+		d = d // 2
+		day_list.append(d)
 
-b1 = 256 // 2
-b2 = b1 // 2
-b3 = b2 // 2
-b4 = b3 // 2
-b5 = b4 // 2
-b6 = b5 // 2
-b7 = b6 // 2
-b8 = b7 // 2
-b9 = b8
+	rest = days - sum(day_list)
+	[day_list.append(1) for i in range(rest)]
+
+	return day_list
+
+DAYS = 80
+FILE = "example.txt"
+
+
+
+
+
+day_list = splitup_days(80)
+day_list = [40]
+read_file = FILE
+
+for day in day_list:
+
+	with open(read_file, "r") as f:
+		ages = [int(x) for x in f.read().split(",")]
+
+	txt = ",".join( [str(x) for x in lanternfish(ages, day)] )
+	
+	with open(write_file, "w") as f:
+		
+
+
 
 # ages1 = lanternfish(ages, b1)
 
@@ -34,10 +53,10 @@ b9 = b8
 # 	ages1 = json.load(f)
 
 # ages2 = lanternfish(ages1, b2)
-DAYS = 80
-amount = len(lanternfish(ages, DAYS))
+# DAYS = 80
+# amount = len(lanternfish(ages, DAYS))
 
 
-print(f"\nAfter {DAYS} days, there were {amount} lanternfish in the sea.\
- We're doomed!\n")
+# print(f"\nAfter {DAYS} days, there were {amount} lanternfish in the sea.\
+#  We're doomed!\n")
 
