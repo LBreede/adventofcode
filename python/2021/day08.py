@@ -152,3 +152,4 @@ for entry in data:
 	result2 += number
 
 print(f"Part 2: {result2}")
+
