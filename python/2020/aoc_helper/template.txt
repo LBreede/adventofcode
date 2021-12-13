@@ -1,0 +1,4 @@
+# --- Day {day}: {chapter} ---
+
+from aoc_helper import load_input
+linelist = load_input("day{daypad}_example.txt")

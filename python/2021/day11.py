@@ -22,15 +22,19 @@ def find_neighbours(pos, lst):
 linelist = load_input("day11_example2.txt")
 linelist = [list(map(int, list(x))) for x in linelist]
 
-for i in range(2):
+for i in range(1):
 	for y, row in enumerate(linelist):
-		print(row)
 		for x, val in enumerate(row):
 			val += 1
-			if val > 9:
-				val = 0
+			
+			while any(z > 9 in z for z in linelist):
+				print("nine")
+
+			# if val > 9: val = 0
+
+
+			print(val)
 			linelist[y][x] = val
-	print()
+	# print()
 
 n = find_neighbours([0, 2], linelist)
-print(n)
