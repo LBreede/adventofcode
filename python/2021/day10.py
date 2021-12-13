@@ -52,7 +52,7 @@ def calc_middle_score(lst):
 	scores = sorted(scores)
 	return scores[floor(len(scores)/2)]
 
-linelist = load_input("day10_input.txt")
+linelist = load_input("day10_example.txt")
 legal, illegal = filter_lines(linelist)
 syntax_error_score = calc_syntax_error_score(illegal)
 middle_score = calc_middle_score(legal)
