@@ -2,14 +2,14 @@
 
 ## 2021
 
-![](https://img.shields.io/badge/day%20📅-7-blue)
+![](https://img.shields.io/badge/day%20📅-13-blue)
 
-![](https://img.shields.io/badge/days%20completed-7-red)
-![](https://img.shields.io/badge/stars%20⭐-12-yellow)
+![](https://img.shields.io/badge/days%20completed-10-red)
+![](https://img.shields.io/badge/stars%20⭐-17-yellow)
 
 ## 2020
 
-![](https://img.shields.io/badge/days%20completed-6-red)
+![](https://img.shields.io/badge/days%20completed-7-red)
 ![](https://img.shields.io/badge/stars%20⭐-13-yellow)
 
 ## 2019
@@ -24,8 +24,8 @@
 
 ## 2017
 
-![](https://img.shields.io/badge/days%20completed-2-red)
-![](https://img.shields.io/badge/stars%20⭐-5-yellow)
+![](https://img.shields.io/badge/days%20completed-6-red)
+![](https://img.shields.io/badge/stars%20⭐-10-yellow)
 
 ## 2016
 
@@ -40,4 +40,4 @@
 
 ## Total
 
-![](https://img.shields.io/badge/stars%20⭐-62-yellow)
+![](https://img.shields.io/badge/stars%20⭐-72-yellow)
