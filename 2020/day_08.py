@@ -30,7 +30,8 @@ def run_program(lst):
 				return value
 				break
 		except:
-			return print("success", value)
+			return value
+			break
 
 oplist = process_data(linelist)
 value = run_program(oplist)
@@ -49,6 +50,5 @@ for i in idx:
 	else:
 		op = "nop"
 	oplist2[i] = [oplist2[i][0], op, oplist2[i][0]]
-	value = run_program(oplist2)
-	# print(oplist2)
-	# print(value)
+	value2 = run_program(oplist2)
+print(value2)
