@@ -16,23 +16,39 @@ def run_program(lst):
 	i = 0
 	id_list = []
 
-	while True:		
-		id_, op, arg = lst[i]
-		if id_ not in id_list:
-			if op == "acc":
-				value += arg
-				i += 1
-			elif op == "jmp": i += arg
-			elif op == "nop": i += 1
-			id_list.append(id_)
-		else:
-			return value
-			break
+	while True:
+		try:
+			id_, op, arg = lst[i]
+			if id_ not in id_list:
+				if op == "acc":
+					value += arg
+					i += 1
+				elif op == "jmp": i += arg
+				elif op == "nop": i += 1
+				id_list.append(id_)
+			else:
+				return value
+				break
+		except:
+			return print("success", value)
 
 oplist = process_data(linelist)
 value = run_program(oplist)
+print(value)
 
-n = sum(x.count("nop") for x in oplist) + sum(x.count("jmp") for x in oplist)
 
-for i in range(n):
-	print(i)
+idx = []
+for i, line in enumerate(oplist):
+	if line[1] == "jmp" or line[1] == "nop":
+		idx.append(i)
+
+for i in idx:
+	oplist2 = oplist[:]
+	if oplist2[i][1] == "nop":
+		op = "jmp"
+	else:
+		op = "nop"
+	oplist2[i] = [oplist2[i][0], op, oplist2[i][0]]
+	value = run_program(oplist2)
+	# print(oplist2)
+	# print(value)
