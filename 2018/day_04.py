@@ -35,6 +35,8 @@ def process_data(subdir):
 
 data = process_data("example")
 
+print(data)
+
 for k, v in data.items():
     v.pop(0)
     minutes_asleep = 0
