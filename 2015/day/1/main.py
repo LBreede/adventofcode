@@ -1,4 +1,6 @@
 # --- Day 1: Not Quite Lisp ---
+
+
 floor = 0
 j = None
 with open("input.txt") as fp:
