@@ -1,31 +1,9 @@
 # --- Day 1: Not Quite Lisp ---
-# import matplotlib.pyplot as plt
-
-with open("input.txt") as fp:
-    txt = fp.read()
-
-# txt = "()())"
-f = 0
+floor = 0
 j = None
-
-# xp = []
-# yp = []
-
-for i, x in enumerate(txt):
-    match x:
-        case "(":
-            f += 1
-        case ")":
-            f -= 1
-    if f < 0 and j is None:
-        j = i + 1
-
-    # xp.append(i)
-    # yp.append(f)
-
-print(f)
-print(j)
-
-
-# plt.plot(xp, yp)
-# plt.show()
+with open("input.txt") as fp:
+    for i, x in enumerate(fp.read()):
+        floor += 1 if x == "(" else -1
+        if floor < 0 and j is None:
+            j = i + 1
+print("Part 1:", floor, "\nPart 2:", j)
