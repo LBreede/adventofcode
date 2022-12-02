@@ -2,8 +2,8 @@
 state = [0] * 1_000_000
 brightness = state.copy()
 with open("input.txt") as fp:
-    for line in fp:
-        b, _, a, *c = line.rstrip().split(" ")[::-1]
+    for line in fp.read().splitlines():
+        b, _, a, *c = line.split(" ")[::-1]
         ax, ay = [int(x) for x in a.split(",")]
         bx, by = [int(x) for x in b.split(",")]
         c = " ".join(c[::-1])
