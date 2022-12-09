@@ -14,7 +14,7 @@ def move(pos, direction):
 
 
 def follow(tail, head, direction):
-    if is_adjacent(tail, head):
+    if all([tail[i] - 1 <= head[i] <= tail[i] + 1 for i in range(2)]):
         return tail
     (tail_x, tail_y), (head_x, head_y) = tail, head
     if tail_x == head_x:
@@ -25,10 +25,6 @@ def follow(tail, head, direction):
         tail[0] += int(tail_x < head_x) * 2 - 1
         tail[1] += int(tail_y < head_y) * 2 - 1
     return tail
-
-
-def is_adjacent(tail, head):
-    return all([tail[i] - 1 <= head[i] <= tail[i] + 1 for i in range(2)])
 
 
 head = [0, 0]
@@ -43,29 +39,28 @@ seven = head.copy()
 eight = head.copy()
 nine = head.copy()
 
-part_one = {tuple(head)}
-part_two = {tuple(head)}
-
+visited_one = {tuple(head)}
+visited_two = {tuple(head)}
 
 with open("input.txt") as fp:
     for motion in fp:
-        d, n = [int(x) if x.isnumeric() else x for x in motion.rstrip().split()]
-        for i in range(n):
+        direction, steps = motion.rstrip().split()
+        for _ in range(int(steps)):
 
-            head = move(head, d)
+            head = move(head, direction)
 
-            tail = follow(tail, head, d)
-            part_one.add(tuple(tail))
+            tail = follow(tail, head, direction)
+            visited_one.add(tuple(tail))
 
-            one = follow(one, head, d)
-            two = follow(two, one, d)
-            three = follow(three, two, d)
-            four = follow(four, three, d)
-            five = follow(five, four, d)
-            six = follow(six, five, d)
-            seven = follow(seven, six, d)
-            eight = follow(eight, seven, d)
-            nine = follow(nine, eight, d)
-            part_two.add(tuple(nine))
+            one = follow(one, head, direction)
+            two = follow(two, one, direction)
+            three = follow(three, two, direction)
+            four = follow(four, three, direction)
+            five = follow(five, four, direction)
+            six = follow(six, five, direction)
+            seven = follow(seven, six, direction)
+            eight = follow(eight, seven, direction)
+            nine = follow(nine, eight, direction)
+            visited_two.add(tuple(nine))
 
-print("Part 1:", len(part_one), "\nPart 2:", len(part_two))
+print("Part 1:", len(visited_one), "\nPart 2:", len(visited_two))
