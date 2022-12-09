@@ -1,5 +1,11 @@
 # Advent of Code :christmas_tree:
 
+## Visualisations
+
+### 2022
+
+#### Day 9: Rope Bridge
+
 ![Rope Bridge Example 2](https://raw.githubusercontent.com/lbreede/advent-of-code/main/2022/day/9/rope_bridge_example2.gif)
 
 <!-- 
