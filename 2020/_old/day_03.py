@@ -1,6 +1,6 @@
 # --- Day 3: Toboggan Trajectory ---
 
-line_list = [line.rstrip("\n") for line in open("input.txt")]
+line_list = [line.rstrip("\n") for line in open("input/day_03.txt")]
 
 
 def slopecheck(hori, vert):
@@ -22,11 +22,10 @@ c = slopecheck(5, 1)
 d = slopecheck(7, 1)
 e = slopecheck(1, 2)
 
-"""
-print(a)
+
+# print(a)
 print(b)
-print(c)
-print(d)
-print(e)
-print(a*b*c*d*e)
-"""
+# print(c)
+# print(d)
+# print(e)
+print(a * b * c * d * e)
