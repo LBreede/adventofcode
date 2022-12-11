@@ -16,7 +16,7 @@ with open("input.txt") as fp:
             hgt_cm = pp["hgt"].endswith("cm") and 150 <= int(pp["hgt"][:-2]) <= 193
             hgt_in = pp["hgt"].endswith("in") and 59 <= int(pp["hgt"][:-2]) <= 76
             hgt = hgt_cm | hgt_in
-            hcl = bool(re.search(r"#[0-9a-f]{6}", pp["hcl"]))
+            hcl = bool(re.search(r"^#[0-9a-f]{6}$", pp["hcl"]))
             ecl = pp["ecl"] in ("amb", "blu", "brn", "gry", "grn", "hzl", "oth")
             pid = bool(re.search(r"^\d{9}$", pp["pid"]))
             valid_two += 1 if all((byr, iyr, eyr, hgt, hcl, ecl, pid)) else 0
