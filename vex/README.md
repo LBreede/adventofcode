@@ -1,1 +1,1 @@
-# Advent of Code in VEX :spiral:
+# Advent of Code in VEX
