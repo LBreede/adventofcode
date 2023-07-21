@@ -17,6 +17,8 @@ pub fn process_part1(input: &str) -> u32 {
         }
     }
     result
+
+    // GitHub Copilot Chat
     // input.lines().fold(0, |acc, line| {
     //     let len = line.len();
     //     let first = &line[..len / 2];
@@ -50,6 +52,29 @@ pub fn process_part2(input: &str) -> u32 {
         }
     }
     result
+
+    // GitHub Copilot Chat
+    // let lines: Vec<&str> = input.lines().collect();
+    // let chunks = lines.chunks(3);
+
+    // let mut result = 0;
+
+    // for chunk in chunks {
+    //     let a = chunk[0];
+    //     let b = chunk[1];
+    //     let c = chunk[2];
+
+    //     for ch in ('a'..='z').chain('A'..='Z') {
+    //         let a_count = a.chars().filter(|&x| x == ch).count();
+    //         let b_count = b.chars().filter(|&x| x == ch).count();
+    //         let c_count = c.chars().filter(|&x| x == ch).count();
+
+    //         if a_count > 0 && b_count > 0 && c_count > 0 {
+    //             result += score_char(ch);
+    //         }
+    //     }
+    // }
+    // result
 }
 
 #[cfg(test)]
