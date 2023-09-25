@@ -63,18 +63,15 @@ def part_two(tower: Program) -> int:
         else:
             break
 
+    child_weights = [child.get_weight() for child in unbalanced_program.children]
     heavy_child: Optional[Program] = None
     for child in unbalanced_program.children:
-        if [child.get_weight() for child in unbalanced_program.children].count(
-            child.get_weight()
-        ) == 1:
+        if child_weights.count(child.get_weight()) == 1:
             heavy_child = child
             break
     assert heavy_child is not None
 
-    unique_weights = sorted(
-        list(set([child.get_weight() for child in unbalanced_program.children]))
-    )
+    unique_weights = sorted(list(set(child_weights)))
     difference = unique_weights[1] - unique_weights[0]
     return heavy_child.weight - difference
 
