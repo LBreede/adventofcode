@@ -1,130 +1,103 @@
-use std::convert::TryInto;
+use std::{cmp::Ordering, str::FromStr};
 
-#[derive(Debug)]
-enum Shape {
+#[derive(PartialEq, Clone, Copy)]
+enum Move {
     Rock = 1,
     Paper = 2,
     Scissors = 3,
 }
 
-use Shape::*;
-
-#[derive(Debug)]
-enum Outcome {
-    Win = 6,
-    Draw = 3,
-    Lose = 0,
+impl PartialOrd for Move {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        if self == &Move::Scissors && other == &Move::Rock {
+            return Some(Ordering::Less);
+        } else if self == &Move::Rock && other == &Move::Scissors {
+            return Some(Ordering::Greater);
+        }
+        Some((*self as u8).cmp(&(*other as u8)))
+    }
 }
 
-use Outcome::*;
+impl FromStr for Move {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s {
+            "A" | "X" => Ok(Move::Rock),
+            "B" | "Y" => Ok(Move::Paper),
+            "C" | "Z" => Ok(Move::Scissors),
+            _ => Err("Not a known move".to_string()),
+        }
+    }
+}
 
 pub fn process_part1(input: &str) -> String {
-    let games: Vec<[Shape; 2]> = input
+    let result: u32 = input
         .lines()
-        .map(|l| {
-            l.split_whitespace()
-                .map(|s| match s {
-                    "A" | "X" => Rock,
-                    "B" | "Y" => Paper,
-                    "C" | "Z" => Scissors,
-                    _ => panic!("Unknown shape"),
-                })
-                .collect::<Vec<Shape>>()
-                .try_into()
-                .expect("Incorrect number of shapes")
+        .map(|line| {
+            let moves: Vec<Move> = line
+                .split(" ")
+                .map(|s| s.parse::<Move>().unwrap())
+                .collect();
+            match moves[0].partial_cmp(&moves[1]) {
+                Some(Ordering::Equal) => 3 + moves[1] as u32,
+                Some(Ordering::Less) => 6 + moves[1] as u32,
+                Some(Ordering::Greater) => 0 + moves[1] as u32,
+                None => {
+                    panic!("moves should be comparable")
+                }
+            }
         })
-        .collect();
-
-    let result = games
-        .iter()
-        .map(|[a, b]| match (b, a) {
-            (Rock, Rock) => Draw as u32 + Rock as u32,
-            (Rock, Paper) => Lose as u32 + Rock as u32,
-            (Rock, Scissors) => Win as u32 + Rock as u32,
-            (Paper, Rock) => Win as u32 + Paper as u32,
-            (Paper, Paper) => Draw as u32 + Paper as u32,
-            (Paper, Scissors) => Lose as u32 + Paper as u32,
-            (Scissors, Rock) => Lose as u32 + Scissors as u32,
-            (Scissors, Paper) => Win as u32 + Scissors as u32,
-            (Scissors, Scissors) => Draw as u32 + Scissors as u32,
-        })
-        .sum::<u32>();
-
+        .sum();
     result.to_string()
 }
 
 pub fn process_part2(input: &str) -> String {
-    let shapes: Vec<Shape> = input
+    let result: u32 = input
         .lines()
-        .map(|line| line.split_whitespace().nth(0).unwrap())
-        .map(|s| match s {
-            "A" | "X" => Rock,
-            "B" | "Y" => Paper,
-            "C" | "Z" => Scissors,
-            _ => panic!("Unknown shape"),
+        .map(|line| {
+            let moves: Vec<&str> = line.split(" ").collect();
+            let opponent_move = moves[0].parse::<Move>().unwrap();
+            match moves[1] {
+                "X" => {
+                    let our_move = match opponent_move {
+                        Move::Rock => Move::Scissors,
+                        Move::Paper => Move::Rock,
+                        Move::Scissors => Move::Paper,
+                    };
+                    0 + our_move as u32
+                }
+                "Y" => 3 + opponent_move as u32,
+                "Z" => {
+                    let our_move = match opponent_move {
+                        Move::Rock => Move::Paper,
+                        Move::Paper => Move::Scissors,
+                        Move::Scissors => Move::Rock,
+                    };
+                    6 + our_move as u32
+                }
+                _ => panic!("Not a known move"),
+            }
         })
-        .collect();
-
-    let outcomes: Vec<Outcome> = input
-        .lines()
-        .map(|line| line.split_whitespace().nth(1).unwrap())
-        .map(|s| match s {
-            "X" => Lose,
-            "Y" => Draw,
-            "Z" => Win,
-            _ => panic!("Unknown outcome"),
-        })
-        .collect();
-
-    let mut result: u32 = 0;
-
-    for (shape, outcome) in shapes.iter().zip(outcomes.iter()) {
-        match outcome {
-            Win => {
-                result += Win as u32;
-                match shape {
-                    Rock => result += Paper as u32,
-                    Paper => result += Scissors as u32,
-                    Scissors => result += Rock as u32,
-                }
-            }
-            Draw => {
-                result += Draw as u32;
-                match shape {
-                    Rock => result += Rock as u32,
-                    Paper => result += Paper as u32,
-                    Scissors => result += Scissors as u32,
-                }
-            }
-            Lose => {
-                result += Lose as u32;
-                match shape {
-                    Rock => result += Scissors as u32,
-                    Paper => result += Rock as u32,
-                    Scissors => result += Paper as u32,
-                }
-            }
-        }
-    }
-
+        .sum();
     result.to_string()
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    const EXAMPLE: &str = "A Y
+
+    const INPUT: &str = "A Y
 B X
 C Z";
 
     #[test]
-    fn part1_works() {
-        let result = process_part1(EXAMPLE);
-        assert_eq!(result, "15");
+    fn test_part1() {
+        assert_eq!(process_part1(INPUT), "15");
     }
+
     #[test]
-    fn part2_works() {
-        let result = process_part2(EXAMPLE);
-        assert_eq!(result, "12");
+    fn test_part2() {
+        assert_eq!(process_part2(INPUT), "12");
     }
 }
