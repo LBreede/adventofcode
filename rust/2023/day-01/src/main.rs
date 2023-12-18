@@ -32,11 +32,11 @@ fn part_two(input: &str) -> u32 {
     result
 }
 
+const INPUT: &str = include_str!("./input.txt");
 fn main() {
-    let input = include_str!("./input.txt");
-    let result_one = part_one(input);
+    let result_one = part_one(INPUT);
     println!("Part one: {}", result_one);
-    let result_two = part_two(input);
+    let result_two = part_two(INPUT);
     println!("Part two: {}", result_two);
 }
 
@@ -44,12 +44,12 @@ fn main() {
 mod tests {
     use super::*;
 
-    const EXAMPLE: &str = "1abc2
+    const EXAMPLE_ONE: &str = "1abc2
 pqr3stu8vwx
 a1b2c3d4e5f
 treb7uchet";
 
-    const EXAMPLE_2: &str = "two1nine
+    const EXAMPLE_TWO: &str = "two1nine
 eightwothree
 abcone2threexyz
 xtwone3four
@@ -59,13 +59,13 @@ zoneight234
 
     #[test]
     fn part_one_works() {
-        let result = part_one(EXAMPLE);
-        assert_eq!(result, 142);
+        assert_eq!(part_one(EXAMPLE_ONE), 142);
+        assert_eq!(part_one(INPUT), 54708);
     }
 
     #[test]
     fn part_two_works() {
-        let result = part_two(EXAMPLE_2);
-        assert_eq!(result, 281);
+        assert_eq!(part_two(EXAMPLE_TWO), 281);
+        assert_eq!(part_two(INPUT), 54087);
     }
 }
