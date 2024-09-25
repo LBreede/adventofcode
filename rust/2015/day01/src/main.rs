@@ -6,8 +6,6 @@ fn process_part_one(input: String) -> i32 {
             ')' => -1,
             _ => 0,
         })
-        .collect::<Vec<i32>>()
-        .into_iter()
         .sum()
 
     // // GitHub Copilot Chat:

@@ -13,7 +13,7 @@ int part_one(int *arr, int size)
             }
         }
     }
-    return -1;
+    return 0;
 }
 
 int part_two(int *arr, int size)
@@ -31,7 +31,7 @@ int part_two(int *arr, int size)
             }
         }
     }
-    return -1;
+    return 0;
 }
 
 int main(int argc, char *argv[])
@@ -73,6 +73,7 @@ int main(int argc, char *argv[])
 
     int result_one = part_one(arr, size);
     int result_two = part_two(arr, size);
+    free(arr); // Free the allocated memory
 
     printf("Part one: %d\n", result_one);
     printf("Part two: %d\n", result_two);
