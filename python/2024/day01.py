@@ -1,12 +1,13 @@
-from typing import IO
 import io
+from typing import IO
 
 
 def split_columns(file: IO) -> tuple[list[int], list[int]]:
     left = []
     right = []
     for line in file:
-        a, b = (int(x) for x in line.rstrip().split())
+        # a, b = (int(x) for x in line.rstrip().split())
+        a, b = map(int, line.rstrip().split())
         left.append(a)
         right.append(b)
     file.close()
@@ -34,6 +35,7 @@ def main() -> None:
     assert answer == 11
 
     file = open("input_day01.txt", "r", encoding="utf-8")
+    print(file)
     answer = part_one(file)
     print(f"Part 1: {answer}")
 
