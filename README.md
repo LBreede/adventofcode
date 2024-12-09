@@ -1,6 +1,6 @@
 # Advent of Code :christmas_tree:
 
-![](https://img.shields.io/badge/total%20stars-134-yellow) (as of 2023-09-24)
+![](https://img.shields.io/badge/total%20stars-163-yellow) (as of 2024-12-08)
 
 ![](https://img.shields.io/github/repo-size/lbreede/advent-of-code?logo=GitHub)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
