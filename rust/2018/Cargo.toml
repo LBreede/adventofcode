@@ -1,0 +1,13 @@
+[package]
+name = "adv-code-2018"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.100"
+code-timing-macros = { version = "0.0.6", features = ["release"] }
+const_format = "0.2.35"
+
+# Additional recommended dependencies
+itertools = "0.14.0"
+regex = "1.12.2"
