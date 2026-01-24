@@ -2,8 +2,7 @@ import time
 from aoc_helper import read_input_to_string, start_day
 
 DAY = 0
-EXAMPLE = """
-"""
+EXAMPLE = ""
 
 
 def part1(inputdata: str) -> int:
