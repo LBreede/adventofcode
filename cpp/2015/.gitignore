@@ -1,3 +1,5 @@
 # Advent of Code
 input.txt
 input/
+
+build/*
