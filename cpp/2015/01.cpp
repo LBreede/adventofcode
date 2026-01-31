@@ -16,8 +16,6 @@ int part1(const std::string &input) {
   return floor;
 }
 
-int part1(const char *input) { return part1(std::string(input)); }
-
 int part2(const std::string &input) {
   int floor = 0;
   for (std::size_t i = 0; i < input.size(); ++i) {
@@ -31,10 +29,8 @@ int part2(const std::string &input) {
       return i + 1;
     }
   }
-  return {};
+  return 0;
 }
-
-int part2(const char *input) { return part2(std::string(input)); }
 
 int main() {
   int day = 1;

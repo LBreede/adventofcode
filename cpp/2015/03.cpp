@@ -62,25 +62,29 @@ int part2(const std::string &input) {
 
   int i = 0;
   for (const char direction : input) {
-    Position &current = (i % 2 == 0) ? position : robo_position;
-    ++i;
+    Position *current = nullptr;
     switch (direction) {
     case '<':
-      --current.x;
+      current = (i % 2 == 0) ? &position : &robo_position;
+      --current->x;
       break;
     case '>':
-      ++current.x;
+      current = (i % 2 == 0) ? &position : &robo_position;
+      ++current->x;
       break;
     case '^':
-      ++current.y;
+      current = (i % 2 == 0) ? &position : &robo_position;
+      ++current->y;
       break;
     case 'v':
-      --current.y;
+      current = (i % 2 == 0) ? &position : &robo_position;
+      --current->y;
       break;
     default:
       continue;
     }
-    positions.insert(current);
+    positions.insert(*current);
+    ++i;
   }
 
   return static_cast<int>(positions.size());

@@ -15,6 +15,7 @@ std::tuple<int, int, int> split_twice(const std::string &s) {
   char second = '\0';
 
   stream >> a >> first >> b >> second >> c;
+  assert(stream && first == 'x' && second == 'x');
   return std::make_tuple(a, b, c);
 }
 int calcPaperArea(const std::string &dimensions) {
@@ -35,14 +36,8 @@ int calcRibbonLength(const std::string &dimensions) {
   int h = 0;
   std::tie(l, w, h) = split_twice(dimensions);
   int min1 = std::min({l, w, h});
-  int min2;
-  if (min1 == l) {
-    min2 = std::min(w, h);
-  } else if (min1 == w) {
-    min2 = std::min(l, w);
-  } else {
-    min2 = std::min(l, w);
-  }
+  int max1 = std::max({l, w, h});
+  int min2 = l + w + h - min1 - max1;
   return 2 * min1 + 2 * min2 + l * w * h;
 }
 
