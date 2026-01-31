@@ -1,5 +1,4 @@
 #include <cassert>
-#include <cstdint>
 #include <functional>
 #include <string>
 #include <unordered_set>
@@ -25,7 +24,7 @@ struct PositionHash {
   }
 };
 
-int part1(const std::string &input) {
+size_t part1(const std::string &input) {
   Position position{0, 0};
   std::unordered_set<Position, PositionHash> positions;
   positions.reserve(input.size() + 1);
@@ -51,9 +50,9 @@ int part1(const std::string &input) {
     positions.insert(position);
   }
 
-  return static_cast<int>(positions.size());
+  return positions.size();
 }
-int part2(const std::string &input) {
+size_t part2(const std::string &input) {
   Position position{0, 0};
   Position robo_position{0, 0};
   std::unordered_set<Position, PositionHash> positions;
@@ -87,11 +86,11 @@ int part2(const std::string &input) {
     ++i;
   }
 
-  return static_cast<int>(positions.size());
+  return positions.size();
 }
 
 int main() {
-  int day = 3;
+  const unsigned int day = 3;
   start_day(day);
 
   std::cout << "=== Part 1 ===\n";

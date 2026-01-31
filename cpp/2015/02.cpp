@@ -18,62 +18,62 @@ std::tuple<int, int, int> split_twice(const std::string &s) {
   assert(stream && first == 'x' && second == 'x');
   return std::make_tuple(a, b, c);
 }
-int calcPaperArea(const std::string &dimensions) {
-  int l = 0;
-  int w = 0;
-  int h = 0;
+uint32_t calc_paper_area(const std::string &dimensions) {
+  uint32_t l = 0;
+  uint32_t w = 0;
+  uint32_t h = 0;
   std::tie(l, w, h) = split_twice(dimensions);
-  int lw = l * w;
-  int wh = w * h;
-  int hl = h * l;
-  int slack = std::min({lw, wh, hl});
+  uint32_t lw = l * w;
+  uint32_t wh = w * h;
+  uint32_t hl = h * l;
+  uint32_t slack = std::min({lw, wh, hl});
   return 2 * lw + 2 * wh + 2 * hl + slack;
 }
 
-int calcRibbonLength(const std::string &dimensions) {
-  int l = 0;
-  int w = 0;
-  int h = 0;
+uint32_t calc_ribbon_length(const std::string &dimensions) {
+  uint32_t l = 0;
+  uint32_t w = 0;
+  uint32_t h = 0;
   std::tie(l, w, h) = split_twice(dimensions);
-  int min1 = std::min({l, w, h});
-  int max1 = std::max({l, w, h});
-  int min2 = l + w + h - min1 - max1;
+  uint32_t min1 = std::min({l, w, h});
+  uint32_t max1 = std::max({l, w, h});
+  uint32_t min2 = l + w + h - min1 - max1;
   return 2 * min1 + 2 * min2 + l * w * h;
 }
 
-int part1(const std::string &input) {
+uint32_t part1(const std::string &input) {
   std::istringstream stream(input);
   std::string line;
-  int total = 0;
+  uint32_t total = 0;
   while (std::getline(stream, line)) {
     if (line.empty()) {
       continue;
     }
-    total += calcPaperArea(line);
+    total += calc_paper_area(line);
   }
   return total;
 }
-int part2(const std::string &input) {
+uint32_t part2(const std::string &input) {
   std::istringstream stream(input);
   std::string line;
-  int total = 0;
+  uint32_t total = 0;
   while (std::getline(stream, line)) {
     if (line.empty()) {
       continue;
     }
-    total += calcRibbonLength(line);
+    total += calc_ribbon_length(line);
   }
   return total;
 }
 
 int main() {
-  int day = 2;
+  const unsigned int day = 2;
   start_day(day);
 
   std::cout << "=== Part 1 ===\n";
 
-  assert(calcPaperArea("2x3x4") == 58);
-  assert(calcPaperArea("1x1x10") == 43);
+  assert(calc_paper_area("2x3x4") == 58);
+  assert(calc_paper_area("1x1x10") == 43);
 
   const std::string input_path = input_path_for_day(day);
   const std::string input = read_file(input_path.c_str());
@@ -86,8 +86,8 @@ int main() {
 
   std::cout << "\n=== Part 2 ===\n";
 
-  assert(calcRibbonLength("2x3x4") == 34);
-  assert(calcRibbonLength("1x1x10") == 14);
+  assert(calc_ribbon_length("2x3x4") == 34);
+  assert(calc_ribbon_length("1x1x10") == 14);
 
   std::cout << "Result = " << part2(input) << "\n";
 

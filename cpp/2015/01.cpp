@@ -1,6 +1,4 @@
 #include <cassert>
-#include <iostream>
-#include <string>
 
 #include "common.h"
 
@@ -33,7 +31,7 @@ int part2(const std::string &input) {
 }
 
 int main() {
-  int day = 1;
+  const unsigned int day = 1;
   start_day(day);
 
   std::cout << "=== Part 1 ===\n";
