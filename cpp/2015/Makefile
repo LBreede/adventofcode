@@ -1,11 +1,11 @@
 CXX := g++
-CXXFLAGS := -std=c++11 -O2 -Wall -Wextra -pedantic
+CXXFLAGS := -std=c++17 -O2 -Wall -Wextra -pedantic
 LDLIBS := -lcrypto
 
 BUILD_DIR := build
-ALL_TARGETS := $(BUILD_DIR)/01 $(BUILD_DIR)/02 $(BUILD_DIR)/03 $(BUILD_DIR)/04 $(BUILD_DIR)/05 $(BUILD_DIR)/06
+ALL_TARGETS := $(BUILD_DIR)/01 $(BUILD_DIR)/02 $(BUILD_DIR)/03 $(BUILD_DIR)/04 $(BUILD_DIR)/05 $(BUILD_DIR)/06 $(BUILD_DIR)/07
 
-.PHONY: all clean 01 02 03 04 05 06
+.PHONY: all clean 01 02 03 04 05 06 07
 
 all: $(ALL_TARGETS)
 
@@ -15,6 +15,7 @@ all: $(ALL_TARGETS)
 04: $(BUILD_DIR)/04
 05: $(BUILD_DIR)/05
 06: $(BUILD_DIR)/06
+07: $(BUILD_DIR)/07
 
 $(BUILD_DIR)/01: 01.cpp common.h
 	mkdir -p $(BUILD_DIR)
@@ -39,6 +40,10 @@ $(BUILD_DIR)/05: 05.cpp common.h
 $(BUILD_DIR)/06: 06.cpp common.h
 	mkdir -p $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) 06.cpp -o $(BUILD_DIR)/06
+
+$(BUILD_DIR)/07: 07.cpp common.h
+	mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) 07.cpp -o $(BUILD_DIR)/07
 
 clean:
 	rm -f $(ALL_TARGETS)
